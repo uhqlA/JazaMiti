@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import InputControl from "../InputControl/InputControls";
 import { auth } from "../Firebase/firebase";
@@ -10,7 +10,7 @@ import "./Register.css";
 
 function Register() {
 
-
+    const navigate = useNavigate ();
     const [values, setValues] = useState ({
         name: "",
         email: "",
@@ -32,10 +32,14 @@ function Register() {
 
         setSubmitButtonDisabled(true);
         createUserWithEmailAndPassword (auth, values.email, values.pass)
-        .then((res) =>{
+        .then(async(res) =>{
             setSubmitButtonDisabled (false);
             const user = res.user;
-            console.log(user);
+            await updateProfile(user, {
+                displayName: values.name,
+            });
+            navigate("/");
+            
         })
 
        .catch((err) => {
@@ -96,7 +100,7 @@ function Register() {
           <p>
             Already have an account?{" "}
             <span>
-              <Link to="/login">Login.</Link>
+              <Link to="/">Login.</Link>
             </span>
           </p>
         </div>

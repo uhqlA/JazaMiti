@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Home (props){
     return (
         <div> 
-            <div>
+            {/* <div>
                 <h1>
                     <Link to="/login">Login</Link>
                 </h1>
@@ -12,7 +12,7 @@ function Home (props){
                 <h1>
                     <Link to="/register">Register</Link>
                 </h1>
-            </div>
+            </div> */}
 
             <br />
             <br />

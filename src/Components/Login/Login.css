@@ -53,6 +53,10 @@
     background-color: gray !important;
   }
   
+  .footer button:disabled {
+    background-color: gray !important;
+  }
+  
   .footer button:hover {
     background-color: #aa2aff;
   }
